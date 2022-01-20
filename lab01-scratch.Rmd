@@ -19,7 +19,7 @@ Today's data comes from the [Metropolitan Transportation Commission (MTC) Open D
 
 In this lab, we will focus on data about the existing and planned segments of the San Francisco Bay trail. The data is located in the *SFO_trails.csv* file located in the *data* folder. Use the code below to read in the .csv file and save it in the RStudio environment as a data frame called `trails`.
 
-```{r read-data, eval=FALSE}
+```{r read-data, eval=TRUE}
 trails <- read_csv("data/SFO-trails.csv")
 ```
 
@@ -49,7 +49,7 @@ View(trails)
     How many observations are in the `trails` dataset? How many variables?
 
   
-```{r eval = F}
+```{r eval = TRUE}
 glimpse(trails)
 ```
 
@@ -60,7 +60,7 @@ glimpse(trails)
     
     - Then, calculate the proportion of observations in each category of `status` by completing the code below.
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 ggplot(data = trails, aes(x = status)) + 
   geom_bar() + 
   labs(x = "status", 
@@ -70,7 +70,7 @@ ggplot(data = trails, aes(x = status)) +
 
 
 
-```{r eval = FALSE}
+```{r eval = TRUE}
 trails %>%
   count(status) %>%
   mutate(proportion = n / sum(n))
@@ -78,7 +78,7 @@ trails %>%
 
 3. Since we want to analyze characteristics for trails in the Bay Area, we will just use data from currently existing trails for the remainder of the analysis. Complete the code below to use the `filter` function to create a subset consisting only of trails that currently exist and have a value reported for `length`. Assign the subset the name `current_trails`. (*Hint: There should be 493 observations in current_trails.*)
 
-```{r eval = F}
+```{r eval = TRUE }
 current_trails <- trails %>%
   filter(status == "Existing", !is.na(length))
 ````
@@ -92,7 +92,7 @@ current_trails <- trails %>%
 
    Make a graph to visualize the distribution of `length`. Include an informative title and axis labels.
 
-```{r eval = F}
+```{r eval = TRUE}
 ggplot(data = current_trails) +
   geom_histogram(mapping = aes(x = length), binwidth = 0.5) + 
   labs(x = "length of trail", 
@@ -119,12 +119,15 @@ current_trails %>%
             std_dev = sd(length)
             )
 
-current_trails %>% filter(length <= 5)
+
 ```
 
 6. Describe the distribution of `length`. Your description should include comments about the shape, center, spread, and any potential outliers. Use the graph from Exercise 4 and relevant summary statistics from Exercise 5 in your description.
 
 7. We want to limit the analysis to trails that are more likely intended for day hikes, rather than multi-day hikes and camping. Therefore, let's remove the extreme outliers from the data for this analysis and only consider those trails that are 5 miles or shorter. 
+```{r}
+current_trails %>% filter(length <= 5)
+```
 
     Filter the dataset to remove the extreme outliers. **Be sure to save the updated dataset, so you can use it for the remainder of the lab.**    
     
@@ -158,8 +161,8 @@ ggplot(data = class_trails, aes(x = class)) +
 
 ```{r}
 
-ggplot(data = class_trails, mapping = aes(x = as.factor(class), y = length)) +
-  geom_boxplot()
+#ggplot(data = class_trails, mapping = aes(x = as.factor(class), y = length)) +
+ # geom_boxplot()
 
 
 
