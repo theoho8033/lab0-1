@@ -137,11 +137,36 @@ current_trails %>% filter(length <= 5)
 9. Complete the code below to impute (i.e. fill in) the missing values of `class` with the appropriate value. After that, eliminate all the observations from class = 3, since we are not going to use the. Then, display the distribution of `class` to check that the missing values were correctly imputed.
 
 ```{r eval=FALSE}
-__________ <- __________ %>% filter(class !=3) %>% 
-  mutate(class = if_else(is.na(class),______,class)) 
+
+
+
+class_trails <- current_trails %>% filter(class !=3) %>% 
+  mutate(class = if_else(is.na(class),0,class)) 
+
+ggplot(data = class_trails, aes(x = class)) + 
+  geom_bar() + 
+  labs(x = "class", 
+       y = "number of observations", 
+       title = "number of observations per class type")
+
+
+
 ```
 
 10. Now that we've completed the univariate EDA (i.e. examining one variable at a time), let's examine the relationship between the length of the trail and its class variable. Make a graph to visualize the relationship between `length` and `class` and calculate the appropriate summary statistics. Include informative axis labels and title on your graph.
+
+
+```{r}
+
+ggplot(data = class_trails, mapping = aes(x = as.factor(class), y = length)) +
+  geom_boxplot()
+
+
+
+
+
+```
+
 
 11. Describe the relationship between `length` and `class`. In other words, describe how the distribution of `length` compares between trails that have different classes (1 = shared use bicycle and pedestrian path, 2 = bike lane, and 3 = bike route). Include information from the graph and summary statistics from the previous exercise in your response.
 
