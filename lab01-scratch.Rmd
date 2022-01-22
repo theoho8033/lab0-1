@@ -254,4 +254,6 @@ We are 99% confident the population mean length of class 1, minus the population
 
 *You're done and ready to submit your work! Knit, commit, and push all remaining changes. You can use the commit message "Done with Lab 1!", and make sure you have pushed all the files to GitHub (your Git pane in RStudio should be empty) and that<u>all</u> documents are updated in your repo on GitHub. Then submit the pdf for your assignment on Gradescope. Include your repo name, so I can check your commits.*
 
+repo: https://github.com/theoho8033/lab0-1
+
 
